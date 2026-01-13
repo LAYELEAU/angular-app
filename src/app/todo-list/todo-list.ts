@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input,Output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -8,5 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrl: './todo-list.css',
 })
 export class TodoList {
+
+  @Input() todoList :string[]=[];
+
+
+  @Output() todoDeleted =new EventEmitter<number>();
+
+  delete(index : number){
+    this.todoDeleted.emit(index);
+  }
 
 }
