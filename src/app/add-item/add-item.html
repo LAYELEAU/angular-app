@@ -1,4 +1,23 @@
-<div class="py-6 flex gap-4">
-    <input [formControl]="newTask" class="p-4 border-2 rounded-sm bg-white border-blue-600"  placeholder="ajouter une tache">
-    <button (click)="submitTodo()" class="py-4 px-6 rounded-sm cursor-pointer text-white font-bold bg-blue-600 hover:bg-blue-900">Add</button>
+<div class="py-6 flex gap-4 add-task-section">
+  <div class="input-container">
+    <input 
+      [formControl]="newTask" 
+      class="task-input-field"  
+      placeholder="Ajouter une tâche..."
+      (keyup.enter)="submitTodo()"
+    >
+    <div class="input-shadow"></div>
+  </div>
+  
+  <button 
+    (click)="submitTodo()" 
+    class="add-task-btn"
+    [disabled]="!newTask.value?.trim()"
+  >
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" class="btn-icon">
+      <path d="M11 4V18M4 11H18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span>Ajouter</span>
+  </button>
 </div>
+

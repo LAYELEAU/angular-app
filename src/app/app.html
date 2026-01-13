@@ -1,9 +1,29 @@
-<main class="main">
-  <h1 class="font-bold text-3xl">Angular To-Do App</h1>
-   <app-add-item class="py-4" (newTodo)="addTodo($event)"></app-add-item>
-   <app-todo-list [todoList]="todos"  
-            (todoDeleted)="handleDeletedTodo($event)"                      >
+<div class="app-wrapper">
+  <main class="main-container">
+    <div class="header-zone">
+      <div class="title-decoration-left"></div>
+      <h1 class="app-title">
+        <span class="title-part">Angular</span>
+        <span class="title-part highlight">To-Do</span>
+        <span class="title-part">App</span>
+      </h1>
+      <div class="title-decoration-right"></div>
+    </div>
     
-   </app-todo-list>
-</main>
+    <app-add-item 
+      class="py-4 add-item-section" 
+      (newTodo)="addTodo($event)">
+    </app-add-item>
+    
+    <app-todo-list 
+      [todoList]="todos"  
+      (todoDeleted)="handleDeletedTodo($event)">
+    </app-todo-list>
+  </main>
+</div>
+
 <router-outlet />
+
+<style>
+
+</style>

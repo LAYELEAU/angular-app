@@ -1,15 +1,16 @@
-
-@for (todo of todoList; let i=$index;track i){
-
-<div class="py-2">
-<div class="list flex justify-between p-4  bg-white rounded-sm">
-    <h2 class="font-bold text-xl">{{todo}}</h2>
-    <button (click)="delete(i)" class="bg-red-600 text-white px-2 cursor-pointer rounded-sm font-bold">Delete</button>
-
-
-</div>
-</div>
-
-
+@for (todo of todoList; let i=$index; track i){
+  <div class="todo-item-wrapper" [style.animation-delay]="(i * 0.08) + 's'">
+    <div class="todo-item">
+      <div class="todo-content">
+        <div class="todo-marker"></div>
+        <h2 class="todo-title">{{todo}}</h2>
+      </div>
+      <button (click)="delete(i)" class="delete-btn">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span>Supprimer</span>
+      </button>
+    </div>
+  </div>
 }
- 

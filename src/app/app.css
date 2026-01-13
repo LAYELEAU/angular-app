@@ -1,13 +1,232 @@
-:host{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    padding: 2rem;
-    background-color: #f4f4f4;
-    min-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@600;700&display=swap');
+
+.app-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-h1{
-    color: #333;
+/* Cercles décoratifs flottants en arrière-plan */
+.app-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -15%;
+  right: -8%;
+  width: 450px;
+  height: 450px;
+  background: #FFE66D;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: floatCircle 20s ease-in-out infinite;
+}
+
+.app-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: #FF6B6B;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: floatCircle 18s ease-in-out infinite reverse;
+}
+
+@keyframes floatCircle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+.main-container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  animation: slideInHeader 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes slideInHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-80px) rotate(-3deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.title-decoration-left,
+.title-decoration-right {
+  width: 60px;
+  height: 60px;
+  background: #FFE66D;
+  border: 4px solid #000;
+  transform: rotate(45deg);
+  box-shadow: 6px 6px 0 #000;
+  flex-shrink: 0;
+}
+
+.title-decoration-left {
+  animation: spinLeft 12s linear infinite;
+}
+
+.title-decoration-right {
+  background: #FF6B6B;
+  animation: spinRight 12s linear infinite;
+}
+
+@keyframes spinLeft {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(405deg); }
+}
+
+@keyframes spinRight {
+  0% { transform: rotate(45deg); }
+  100% { transform: rotate(-315deg); }
+}
+
+.app-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 3.5rem;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.title-part {
+  display: inline-block;
+  color: #000;
+  text-shadow: 
+    3px 3px 0 #fff,
+    6px 6px 0 #000;
+  animation: titleBounce 2s ease-in-out infinite;
+}
+
+.title-part:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.title-part:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.title-part:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+@keyframes titleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.title-part.highlight {
+  color: #FFE66D;
+  text-shadow: 
+    3px 3px 0 #000,
+    6px 6px 0 #FF6B6B;
+}
+
+.add-item-section {
+  display: block;
+  animation: slideInLeft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s both;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-wrapper {
+    padding: 1.5rem;
+  }
+
+  .app-title {
+    font-size: 2.5rem;
+  }
+
+  .title-decoration-left,
+  .title-decoration-right {
+    width: 45px;
+    height: 45px;
+  }
+
+  .header-zone {
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-wrapper {
+    padding: 1rem;
+  }
+
+  .app-title {
+    font-size: 1.8rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title-decoration-left,
+  .title-decoration-right {
+    display: none;
+  }
+
+  .header-zone {
+    margin-bottom: 1.5rem;
+  }
+
+  .app-wrapper::before,
+  .app-wrapper::after {
+    width: 300px;
+    height: 300px;
+  }
 }
